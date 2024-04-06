@@ -7,6 +7,20 @@ type Slide = {
   id: string;
 };
 
+app.get("/slides", async (req, res) => {
+  const dbRes = await fetch(`http://localhost:3036/slides/`);
+
+  if (dbRes.status === 404) {
+    res.status(404);
+    res.send("Not Found");
+    return;
+  }
+
+  const json = (await dbRes.json()) as Slide[];
+
+  res.json(json);
+});
+
 app.get("/slides/:slideId", async (req, res) => {
   const dbRes = await fetch(
     `http://localhost:3036/slides/${req.params.slideId}`

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./SlideContainer.module.css";
 import { Slide } from "@/api/types";
 
 interface Props {
@@ -11,13 +10,21 @@ interface Props {
 }
 
 // accept props from the server side for the initial rendering
-export function SlideContainer(props: Props) {
+export function SlideClientContainer(props: Props) {
   // Set initial state from props (i.e.) fetched on server, upon initial rendering
   const [currentSlide, setCurrentSlide] = useState(props.currentSlide);
-  const [prevSlides, setPrevSlides] = useState(0);
-  const [nextSlides, setNextSlides] = useState(0);
+  const [nextSlides, setNextSlides] = useState(props.nextSlides);
+  const [prevSlides, setPrevSlides] = useState(props.prevSlides);
 
   function onNext() {
+    const nextSlide = nextSlides[0];
+    setCurrentSlide(nextSlide);
+
+    const newPrevSlides = [currentSlide].concat(prevSlides);
+    setPrevSlides(newPrevSlides);
+
+    const newNextSlides = nextSlides.concat(prevSlides);
+    setNextSlides(newPrevSlides);
     // if no next slide in state
     //   fetch and wait
     //
@@ -27,5 +34,5 @@ export function SlideContainer(props: Props) {
     //   merge next slides logic
   }
 
-  return <div className={styles.component}></div>;
+  return <div></div>;
 }
