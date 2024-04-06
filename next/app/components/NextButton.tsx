@@ -12,7 +12,7 @@ export function NextButton(props: Props) {
 
   useEffect(() => {
     // after first render, swap the link with the animation button
-    setLink(false);
+    // setLink(false);
   }, [link]);
 
   return link ? (

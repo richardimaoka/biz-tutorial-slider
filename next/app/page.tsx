@@ -17,7 +17,7 @@ interface Props {
 export default function Page(props: Props) {
   return (
     <main className={styles.component}>
-      <SlideServerContainer />
+      <SlideServerContainer slideId={props.searchParams.step} />
     </main>
   );
 }

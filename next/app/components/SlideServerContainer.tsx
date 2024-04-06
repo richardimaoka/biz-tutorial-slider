@@ -10,12 +10,15 @@ export async function SlideServerContainer(props: Props) {
     ? await getSlide(props.slideId)
     : await getFirstSlide();
 
-  const prev = await getPrevSlide(current.id, 10);
-  const next = await getNextSlide(current.id, 10);
+  const prevSlides = await getPrevSlide(current.id, 10);
+  const nextSlides = await getNextSlide(current.id, 10);
+
+  const prev = prevSlides.length ? prevSlides[0].id : undefined;
+  const next = nextSlides.length ? nextSlides[0].id : undefined;
 
   return (
     <>
-      <Slide current={current.id} />
+      <Slide current={current.id} prev={prev} next={next} />
     </>
   );
 }

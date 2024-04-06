@@ -27,11 +27,11 @@ export async function getFirstSlide(): Promise<Slide> {
 export async function getNextSlide(
   slideId: string,
   size: number
-): Promise<Slide> {
+): Promise<Slide[]> {
   const res = await fetch(
     `http://localhost:3038/slides/${slideId}/next?size=${size}`
   );
-  const json = (await res.json()) as Slide;
+  const json = (await res.json()) as Slide[];
 
   if (res.status === 404) {
     throw new Error("not found");
@@ -43,11 +43,11 @@ export async function getNextSlide(
 export async function getPrevSlide(
   slideId: string,
   size: number
-): Promise<Slide> {
+): Promise<Slide[]> {
   const res = await fetch(
     `http://localhost:3038/slides/${slideId}/prev?size=${size}`
   );
-  const json = (await res.json()) as Slide;
+  const json = (await res.json()) as Slide[];
 
   if (res.status === 404) {
     throw new Error("not found");
