@@ -1,0 +1,23 @@
+.next {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  width: 200px;
+  background-color: white;
+
+  text-align: center;
+
+  padding: 8px;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.button {
+  border-style: none;
+  line-height: normal;
+  font-size: inherit;
+  font-family: inherit;
+  box-sizing: content-box;
+}

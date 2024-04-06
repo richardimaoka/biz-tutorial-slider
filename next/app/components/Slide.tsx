@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Slide.module.css";
+import { NextButton } from "./NextButton";
 
 interface Props {
   current: string;
@@ -8,7 +9,6 @@ interface Props {
 }
 
 export function Slide(props: Props) {
-  console.log(props);
   return (
     <div className={styles.component}>
       <div className={styles.layout}>
@@ -19,11 +19,7 @@ export function Slide(props: Props) {
           PREV
         </Link>
       )}
-      {props.next && (
-        <Link className={styles.next} href={"?step=" + props.next}>
-          NEXT
-        </Link>
-      )}
+      {props.next && <NextButton next={props.next} />}
     </div>
   );
 }
